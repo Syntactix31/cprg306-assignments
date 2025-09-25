@@ -6,15 +6,15 @@ export default function Display() {
   return (
     <main>
 
-      <h1 className="text-shadows">CPRG 306: Web Development 2 - Assignments</h1>
+      <h1 className="text-shadows min-width-text">CPRG 306: Web Development 2 - Assignments</h1>
         
 
-      <div className="my-20 mx-70">
-        <Link href="/week-2" className="rounded-2xl bg-white border-black p-5 m-5">Week-2 &#10140;</Link>
+      <div className="mt-20">
+        <Link href="/week-2" className="mx-auto flex max-w-sm items-center gap-x-4 rounded-xl bg-white p-6 shadow-lg outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10 hover:bg-red-200 min-width-week">Week-2 &#10140;</Link>
       </div>
       
-      <div className="my-20 mx-70">
-        <Link href="/week-3"className="rounded-2xl bg-white border-black p-5 m-5">Week-3 &#10140;</Link>
+      <div className="my-20">
+        <Link href="/week-3"className="mx-auto flex max-w-sm items-center gap-x-4 rounded-xl bg-white p-6 shadow-lg outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10 hover:bg-red-200 min-width-week">Week-3 &#10140;</Link>
       </div>
       
     </main>

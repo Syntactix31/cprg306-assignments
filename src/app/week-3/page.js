@@ -1,13 +1,10 @@
-import Link from 'next/link';
+import ItemList from './item-list';
 
 export default function Page() {
   return <main>
-    <h1 className='text-4xl p-4'>Shopping List</h1>
-    <ul>
-      <Link href="/item-list"></Link>
-
-
-    </ul>
+    <h1 className='text-shadows'>Shopping List</h1>
+    <ItemList />
+    
   </main>
 };
 
