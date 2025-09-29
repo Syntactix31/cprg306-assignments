@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 // Additional Colours and UI
 // three-d-text bg-amber-300 py-6 px-6 text-center text-4xl"
-export default function Display() {
+export default function Page() {
   return (
     <main>
 
