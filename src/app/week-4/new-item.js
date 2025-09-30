@@ -27,7 +27,7 @@ export default function NewItem() {
 
       <div className="flex justify-center gap-10">
       
-        <button disabled={quantity == 1} onClick={decrement} className={`bg-blue-500 py-4 px-12 my-4 rounded-lg text-white hover:bg-blue-900 cursor-pointer ${
+        <button disabled={quantity == 1} onClick={decrement} className={`bg-blue-500 py-4 px-12 my-4 rounded-lg text-white hover:bg-blue-700 cursor-pointer ${
             quantity === 1 ? "opacity-50 cursor-not-allowed" : ""
           }`}>Decrement</button>
           
