@@ -44,11 +44,19 @@ body {
 }
 
 :root {
-  --color-primary: #f6aca2;
+  --color-primary: #f6a2a2;
   --color-secondary: #f49b90;
   --color-tertiary: #f28b7d;
   --color-quaternary: #f07a6a;
   --color-quinary: #ee6352;
+}
+
+:root {
+  --color-primary-2: #a2b8f6;
+  --color-secondary-2: #90a2f4;
+  --color-tertiary-2: #7d8bf2;
+  --color-quaternary-2: #6a76f0;
+  --color-quinary-2: #5263ee;
 }
 
 /* body {
