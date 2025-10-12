@@ -264,7 +264,11 @@ body {
 
 
 
-
+.inner-border
+{
+    outline: 5px solid white;
+    outline-offset: -10px;
+}
 
 
 

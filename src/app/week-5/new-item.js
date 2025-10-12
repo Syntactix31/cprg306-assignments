@@ -5,6 +5,12 @@ import { useState } from "react";
 export default function NewItem() {
   const [quantity, setQuantity] = useState(1);
 
+  // Name Field
+  const [name, setName] = useState("");
+
+  // Category Field
+  const [category, setCategory] = useState("Produce");
+
   const increment = () => {
     
     if (quantity < 20) {
@@ -19,21 +25,24 @@ export default function NewItem() {
     }
   };
 
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
 
-  // Name Field
-  const [name, setName] = useState("");
+  const handleCategoryChange = (event) => {
+    setCategory(event.target.value);
 
-  // Category Field
-  const [category, setCategory] = useState("produce");
+  };
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
       const item = {
 
-        Name: {name},
-        Quantity: {quantity},
-        Category: {category},
+        Name: name,
+        Quantity: quantity,
+        Category: category,
 
       };
 
@@ -44,21 +53,29 @@ export default function NewItem() {
       Quantity: ${quantity}
       Category: ${category}`);
 
+    setName("");
+    setQuantity(1);
+    setCategory("Produce");
 
   };
 
-  const handleChange = (event) => {
-    setName(event.target.value);
-    setCategory(event.target.value);
-  };
-
+  const categories = [
+    "Produce",
+    "Bakery",
+    "Dairy",
+    "Canned Goods",
+    "Dry Goods",
+    "Household",
+    "Meat",
+    "Miscellaneous"
+  ];
 
   return (
 
     <section>
-      <form onSubmit={handleSubmit} className="mt-10 bg-blue-300 mx-auto h-170 w-140 rounded-2xl p-2">
+      <form onSubmit={handleSubmit} className="mt-10 bg-blue-300 mx-auto h-175 w-140 rounded-2xl p-2 inner-border mb-10">
         <label >
-          <input type="text" placeholder="Enter Product name" value={name} onChange={handleChange} className="flex items-center justify-center font-bold text-4xl text-red-300 bg-white border-4 border-red-200 rounded-lg w-120 h-20 mx-auto my-10 text-center"/>
+          <input type="text" placeholder="Enter Product name" value={name} onChange={handleNameChange} className="flex items-center justify-center font-bold text-4xl text-red-300 bg-white border-4 border-red-200 rounded-lg w-120 h-20 mx-auto mt-10 mb-15 text-center" required/>
         </label>
         <label>
           <div className="flex items-center justify-center font-bold text-4xl text-red-300 bg-white border-4 border-red-200 rounded-lg w-64 h-20 mx-auto my-4">
@@ -67,21 +84,28 @@ export default function NewItem() {
 
           <div className="flex justify-center gap-10">
           
-            <button disabled={quantity == 1} onClick={decrement} className={`bg-blue-500 py-4 px-12 my-4 rounded-lg text-white hover:bg-blue-700 cursor-pointer ${
-                quantity === 1 ? "opacity-50 cursor-not-allowed" : ""
-              }`}>Decrement</button>
-              
-              {/* hover:font-bold hover:border-red-300 hover:py-2 for clear change button hover:bg-white hover:border-4 hover:text-red-600*/}
-            <button disabled={quantity == 20} onClick={increment} className={`bg-red-500 py-4 px-12 my-4 rounded-lg text-white hover:bg-red-700  cursor-pointer ${
+            <button type="button" disabled={quantity === 1} onClick={decrement} className={`bg-blue-500 py-4 px-12 my-4 rounded-lg text-white hover:bg-blue-700 cursor-pointer ${quantity === 1 ? "opacity-50 cursor-not-allowed" : ""}`}>
+              Decrement</button>
+
+            <button type="button" disabled={quantity === 20} onClick={increment} className={`bg-red-500 py-4 px-12 my-4 rounded-lg text-white hover:bg-red-700 cursor-pointer ${
                 quantity === 20 ? "opacity-50 cursor-not-allowed" : ""
               }`}>Increment</button>
           </div>          
         </label>
+
         <label className="flex items-center justify-center font-bold text-4xl text-red-300 bg-white border-4 border-red-200 rounded-lg w-80 h-20 mx-auto my-10">
-          Category Type
-          <select placeholder="Category" onChange={handleChange} />
+          
+          <select placeholder="Category Type" value={category} onChange={handleCategoryChange} required>
+              {
+              categories.map((catType) => (
+                <option key={catType} value={catType}>
+                  {catType}
+                </option>))
+              }
+              
+          </select>
         </label>
-        <input type="submit" value="Submit" className="my-18 flex items-center justify-center font-bold text-4xl text-red-300 bg-white border-4 border-red-200 rounded-4xl w-50 h-20 mx-auto my-10 hover:text-white hover:bg-red-500 hover:border-none"/>
+        <input type="submit" value="Submit" className="my-18 flex items-center justify-center font-bold text-4xl text-red-300 bg-white border-4 border-red-200 rounded-4xl w-50 h-20 mx-auto hover:text-white hover:bg-red-300 hover:border-none hover: cursor-pointer"/>
 
         {/* Fix CSS border outline to offset (for submit button with white):
 
@@ -91,13 +115,25 @@ export default function NewItem() {
           HOW TO GET INNER BORDER
         */}
 
+        {/* hover:font-bold hover:border-red-300 hover:py-2 for clear change button hover:bg-white hover:border-4 hover:text-red-600 */}
+
       </form>
     </section>
   );
 }
 
 
+// TODO
+/*
+  Find out why the Decrement button is highlighting when the cursor is hovered over entire button div
 
+  Fix color scheme n border composition
+
+  IMPORTANT:
+  Find a way to get a placeholder for drop down category menu that changes when type is added (it should say "Category Type")
+
+
+*/
 
 
 
