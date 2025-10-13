@@ -9,7 +9,9 @@ export default function NewItem() {
   const [name, setName] = useState("");
 
   // Category Field
-  const [category, setCategory] = useState("Produce");
+  /****** NOTE: usestate("Produce") was replaced with usestate("") to allow a placeholder for the select form element 
+   *            this still requires the user input a category ******/  
+  const [category, setCategory] = useState("");
 
   const increment = () => {
     
@@ -67,8 +69,12 @@ export default function NewItem() {
     "Dry Goods",
     "Household",
     "Meat",
-    "Miscellaneous"
+    "Frozen Foods",
+    "Beverages",
+    "Snacks",
+    "Other"
   ];
+
 
   return (
 
@@ -77,31 +83,34 @@ export default function NewItem() {
         <label >
           <input type="text" placeholder="Enter Product name" value={name} onChange={handleNameChange} className="flex items-center justify-center font-bold text-4xl text-red-300 bg-white border-4 border-red-200 rounded-lg w-120 h-20 mx-auto mt-10 mb-15 text-center" required/>
         </label>
-        <label>
-          <div className="flex items-center justify-center font-bold text-4xl text-red-300 bg-white border-4 border-red-200 rounded-lg w-64 h-20 mx-auto my-4">
-            Quantity: {quantity}
-          </div>
 
-          <div className="flex justify-center gap-10">
+        <div className="flex items-center justify-center font-bold text-4xl text-red-300 bg-white border-4 border-red-200 rounded-lg w-64 h-20 mx-auto my-4">
+          Quantity: {quantity}
+        </div>
+
+        <div className="flex justify-center gap-10">
           
-            <button type="button" disabled={quantity === 1} onClick={decrement} className={`bg-blue-500 py-4 px-12 my-4 rounded-lg text-white hover:bg-blue-700 cursor-pointer ${quantity === 1 ? "opacity-50 cursor-not-allowed" : ""}`}>
-              Decrement</button>
+          <button type="button" disabled={quantity === 1} onClick={decrement} className={`bg-blue-500 py-4 px-12 my-4 rounded-lg text-white hover:bg-blue-700 cursor-pointer ${quantity === 1 ? "opacity-50 cursor-not-allowed" : ""}`}>
+            Decrement</button>
 
-            <button type="button" disabled={quantity === 20} onClick={increment} className={`bg-red-500 py-4 px-12 my-4 rounded-lg text-white hover:bg-red-700 cursor-pointer ${
-                quantity === 20 ? "opacity-50 cursor-not-allowed" : ""
+          <button type="button" disabled={quantity === 20} onClick={increment} className={`bg-red-500 py-4 px-12 my-4 rounded-lg text-white hover:bg-red-700 cursor-pointer ${
+              quantity === 20 ? "opacity-50 cursor-not-allowed" : ""
               }`}>Increment</button>
-          </div>          
-        </label>
+        </div>          
+
 
         <label className="flex items-center justify-center font-bold text-4xl text-red-300 bg-white border-4 border-red-200 rounded-lg w-80 h-20 mx-auto my-10">
           
-          <select placeholder="Category Type" value={category} onChange={handleCategoryChange} required>
-              {
-              categories.map((catType) => (
-                <option key={catType} value={catType}>
-                  {catType}
-                </option>))
-              }
+          <select value={category} onChange={handleCategoryChange} required>
+            <option value="" disabled>
+              Category Type
+            </option>
+            {
+            categories.map((catType) => (
+              <option key={catType} value={catType}>
+                {catType}
+              </option>))
+            }
               
           </select>
         </label>
@@ -112,7 +121,7 @@ export default function NewItem() {
             hover:outline-black hover:outline-offset--9px\
             hover:border-white
 
-          HOW TO GET INNER BORDER
+          Decided to not implement the inner border
         */}
 
         {/* hover:font-bold hover:border-red-300 hover:py-2 for clear change button hover:bg-white hover:border-4 hover:text-red-600 */}
@@ -125,11 +134,14 @@ export default function NewItem() {
 
 // TODO
 /*
-  Find out why the Decrement button is highlighting when the cursor is hovered over entire button div
+   Completed 
+   Find out why the Decrement button is highlighting when the cursor is hovered over entire button div
 
   Fix color scheme n border composition
 
   IMPORTANT:
+
+  Completed
   Find a way to get a placeholder for drop down category menu that changes when type is added (it should say "Category Type")
 
 
