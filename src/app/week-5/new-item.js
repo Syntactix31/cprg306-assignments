@@ -101,7 +101,7 @@ export default function NewItem() {
 
         <label className="flex items-center justify-center font-bold text-4xl text-red-300 bg-white border-4 border-red-200 rounded-lg w-80 h-20 mx-auto my-10">
           
-          <select value={category} onChange={handleCategoryChange} required>
+          <select value={category} onChange={handleCategoryChange} required className="cursor-pointer">
             <option value="" disabled>
               Category Type
             </option>
