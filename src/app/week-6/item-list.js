@@ -18,6 +18,7 @@ export default function ItemList() {
     return 0;
   });
 
+  // Idle code for expansion of scope
   const sortedItemsIndex = [...items].sort((a, b) => {
     if (sortBy === "index") {
       return a.category.localeCompare(b.category);
@@ -43,6 +44,7 @@ export default function ItemList() {
           Sort by Category
         </button>
 
+        {/* // TODO Later (Optional Activity) */}
         <button
           onClick={() => setSortBy("index")}
           className={`px-4 py-2 rounded 
@@ -63,14 +65,7 @@ export default function ItemList() {
         ))}
       </ul>
 
-      <ul>
-        {sortedItemsIndex.map((item) => (
-          <Item
-            key={item.id}
-            name={item.name}
-          />
-        ))}
-      </ul>
+
     </div>
   );
 }
