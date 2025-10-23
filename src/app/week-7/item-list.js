@@ -1,12 +1,11 @@
 "use client"
 
 import Item from "./item";
-import items from './item.json';
 
 import { useState } from "react";
 
 
-export default function ItemList() {
+export default function ItemList({ items }) {
   const [sortBy, setSortBy] = useState("name");
 
   const sortedItems = [...items].sort((a, b) => {
@@ -19,12 +18,12 @@ export default function ItemList() {
   });
 
   // Idle code for expansion of scope used this instead of the other one
-  const sortedItemsIndex = [...items].sort((a, b) => {
-    if (sortBy === "index") {
-      return a.category.localeCompare(b.category);
-    }
-    return 0;
-  });
+  // const sortedItemsIndex = [...items].sort((a, b) => {
+  //   if (sortBy === "index") {
+  //     return a.category.localeCompare(b.category);
+  //   }
+  //   return 0;
+  // });
 
   return (
     <div className="mx-[25vw] px-10 pt-10 pb-5 bg-red-200 min-w-list">

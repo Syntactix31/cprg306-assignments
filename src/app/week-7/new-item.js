@@ -1,8 +1,7 @@
 "use client"
-import { Quando } from "next/font/google";
 import { useState } from "react";
 
-export default function NewItem() {
+export default function NewItem({ onAddItem }) {
   const [quantity, setQuantity] = useState(1);
 
   // Name Field
@@ -12,6 +11,14 @@ export default function NewItem() {
   /****** NOTE: usestate("Produce") was replaced with usestate("") to allow a placeholder for the select form element 
    *            this still requires the user input a category ******/  
   const [category, setCategory] = useState("");
+
+  const newItem = {
+    id: Math.random().toString(36).substring(2, 9),
+      name,
+      quantity,
+      category,
+
+  }
 
   const increment = () => {
     
@@ -51,10 +58,7 @@ export default function NewItem() {
       console.log(item);
 
     setTimeout(() => {
-      alert(`An item was submitted:
-      Name: ${name}
-      Quantity: ${quantity}
-      Category: ${category}`);
+      onAddItem(newItem);
     }, 500);
 
     
