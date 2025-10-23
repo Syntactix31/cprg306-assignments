@@ -19,7 +19,7 @@ export default function Page() {
   return <main>
     <h1 className='text-shadows'>Shopping List</h1>
     <NewItem onAddItem={handleAddItem} />
-    <ItemList ItemList={items} />
+    <ItemList items={items} />
     
   </main>
 };
