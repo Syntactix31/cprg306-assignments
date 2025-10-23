@@ -144,8 +144,8 @@ export default function NewItem({ onAddItem }) {
 /*
   IMPORTANT:
   *****FIX ALIGNMENT OF ADD ITEM AND SHOPPING WEEK-7 LIST****
-  
-  
+  ***EMBOLDEN TEXT IN INDEX CATEGORY
+
    Completed 
    Find out why the Decrement button is highlighting when the cursor is hovered over entire button div
    Fix color scheme n border composition
