@@ -142,13 +142,13 @@ export default function NewItem({ onAddItem }) {
 
 // TODO
 /*
+  IMPORTANT:
+  *****FIX ALIGNMENT OF ADD ITEM AND SHOPPING WEEK-7 LIST****
+  
+  
    Completed 
    Find out why the Decrement button is highlighting when the cursor is hovered over entire button div
-
-  Fix color scheme n border composition
-
-  IMPORTANT:
-
+   Fix color scheme n border composition
   Completed
   Find a way to get a placeholder for drop down category menu that changes when type is added (it should say "Category Type")
 

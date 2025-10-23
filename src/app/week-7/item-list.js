@@ -19,13 +19,10 @@ export default function ItemList({ items }) {
     } return 0;
   });
 
-  // Idle code for expansion of scope used this instead of the other one
-  // const sortedItemsIndex = [...items].sort((a, b) => {
-  //   if (sortBy === "index") {
-  //     return a.category.localeCompare(b.category);
-  //   }
-  //   return 0;
-  // });
+  const groupedItems = sortedItems.reduce((acc, item) => {
+    (acc[item.category] = acc[item.category] || []).push(item);
+    return acc;
+  }, {});
 
   return (
     <div className="mx-[25vw] px-10 pt-10 pb-5 bg-red-200 min-w-list">
@@ -55,16 +52,33 @@ export default function ItemList({ items }) {
         </button>
       </div>
 
-      <ul>
-        {sortedItems.map((item) => (
-          <Item
-            key={item.id}
-            name={item.name}
-            quantity={item.quantity}
-            category={item.category}
-          />
-        ))}
-      </ul>
+      {sortBy !== "index" ? (
+        <ul>
+          {sortedItems.map((item) => (
+            <Item
+              key={item.id}
+              name={item.name}
+              quantity={item.quantity}
+              category={item.category}
+            />
+          ))}
+        </ul>
+      ) : (
+            <div className="index-items">
+              {Object.keys(groupedItems).map((category) => (
+                <div key={category} className="mb-6">
+                  <h2 className="text-xl font-bold mb-2 pl-5">{category}</h2>
+                  <ul>
+                    {groupedItems[category].map((item) => (
+                      <Item
+                        key={item.id}
+                        name={item.name}
+                        quantity={item.quantity}
+                      />
+                    ))}
+                  </ul>
+                </div>))}
+              </div>)}
 
 
     </div>

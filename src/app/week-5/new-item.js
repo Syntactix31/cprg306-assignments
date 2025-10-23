@@ -118,7 +118,7 @@ export default function NewItem() {
               
           </select>
         </label>
-        <input type="submit" value="Submit" className="my-18 flex items-center justify-center font-bold text-4xl text-red-300 bg-white border-4 border-red-200 rounded-4xl w-50 h-20 mx-auto hover:text-white hover:bg-red-300 hover:border-none hover: cursor-pointer active:scale-125"/>
+        <input type="submit" value="Submit" className="my-18 flex items-center justify-center font-bold text-4xl text-red-300 bg-white border-4 border-red-200 rounded-4xl w-50 h-20 mx-auto hover:text-white hover:bg-red-300 hover:border-none hover: cursor-pointer active:scale-90"/>
 
         {/* Fix CSS border outline to offset (for submit button with white):
 
