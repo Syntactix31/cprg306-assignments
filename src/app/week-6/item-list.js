@@ -14,14 +14,9 @@ export default function ItemList() {
       return a.name.localeCompare(b.name);
     } else if (sortBy === "category") {
       return a.category.localeCompare(b.category);
-    }
-    return 0;
-  });
-
-  // Idle code for expansion of scope used this instead of the other one
-  const sortedItemsIndex = [...items].sort((a, b) => {
-    if (sortBy === "index") {
-      return a.category.localeCompare(b.category);
+    } else if (sortBy === "index") {
+      const categoryCompare = a.category.localeCompare(b.category);
+      return categoryCompare !== 0 ? categoryCompare : a.name.localeCompare(b.name);
     }
     return 0;
   });

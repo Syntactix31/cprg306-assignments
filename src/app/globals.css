@@ -35,7 +35,9 @@ body {
     5px 5px 10px #000000;
 } */
 
-
+.new-item {
+  background-color: #eff8e2;
+}
 
 *,
 *::before,
