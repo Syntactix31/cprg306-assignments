@@ -35,7 +35,7 @@ export default function Page() {
       <h1 className='text-shadows'>Shopping List</h1>
       <main className='flex gap-8'>
         
-        <div className='flex-1'>
+        <div className='flex-1'> {/* *****TODO: convert to flex and gap-10 to align all the page elements side by side for readability***** */}
           
           <NewItem onAddItem={handleAddItem} />
           <ItemList items={items} onItemSelect={handleItemSelect} />
@@ -54,9 +54,6 @@ export default function Page() {
     </div>
   );
 };
-
-
-
 
 
 
