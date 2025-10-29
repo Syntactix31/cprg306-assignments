@@ -34,17 +34,18 @@ export default function MealIdeas({ ingredient }) {
   }, [ingredient]); // Update paint with change in ingredient, if its empty it just does it once
 
   return (
-    <div>
-      <h1 className="p-4 font-bold text-center mr-10">Meal Ideas</h1>
+    <div> { /*add border on top left and right for Meal Ideas header*/}
+      <h1 className="p-4 font-extrabold text-center mr-14 text-2xl text-red-800">Meal Ideas</h1>
       {error && <div>Error: {error}</div>}
-      <ul className="mr-10">
+      <ul className="mr-10 flex items-start justify-center gap-4 flex-wrap width-50% basis-0.5">
         {meals.map(meal => (
-          <li key={meal.idMeal} className="bg-white p-6 my-2 border-4 border-red-200 rounded-2xl">
+          <li key={meal.idMeal} className="bg-white w-50 p-6 center m-2 border-4 border-red-200 rounded-2xl">
             <h3>{meal.strMeal}</h3>
-            <img src={meal.strMealThumb} alt={meal.strMeal} width={100} />
+            <img src={meal.strMealThumb} alt={meal.strMeal} width={150} />
           </li>
         ))}
       </ul>
     </div>
   );
 }
+

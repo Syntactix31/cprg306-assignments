@@ -87,7 +87,7 @@ export default function NewItem({ onAddItem }) {
   return (
 
     <section>
-      <form onSubmit={handleSubmit} className="mt-10 bg-blue-300 mx-auto h-175 w-140 scale-70 rounded-2xl p-2 inner-border mb-10">
+      <form onSubmit={handleSubmit} className="mt-10 bg-blue-300 ml-29 h-175 w-140 rounded-2xl p-2 inner-border mb-10">
         <label >
           <input type="text" placeholder="Enter Product name" value={name} onChange={handleNameChange} className="flex items-center justify-center font-bold text-4xl text-red-300 bg-white border-4 border-red-200 rounded-lg w-120 h-20 mx-auto mt-10 mb-15 text-center" required/>
         </label>
@@ -143,8 +143,7 @@ export default function NewItem({ onAddItem }) {
 // TODO
 /*
   IMPORTANT:
-  *****FIX ALIGNMENT OF ADD ITEM AND SHOPPING WEEK-7 LIST****
-  ***EMBOLDEN TEXT IN INDEX CATEGORY
+  *****ADD SCROLL EFFECT FOR NEW ITEM ADDED WEEK-8 THE ITEM LIST IS HIDDEN
 
    Completed 
    Find out why the Decrement button is highlighting when the cursor is hovered over entire button div

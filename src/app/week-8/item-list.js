@@ -25,7 +25,7 @@ export default function ItemList({ items, onItemSelect }) {
   }, {});
 
   return (
-    <div className="mx-[25vw] px-10 pt-10 pb-5 bg-red-200 min-w-list">
+    <div className="ml-10 px-10 pt-10 pb-5 bg-red-200 min-w-list">
       <div className="flex gap-4 mb-6 lg:pl-4 pl-0">
         <button
           onClick={() => setSortBy("name")}
