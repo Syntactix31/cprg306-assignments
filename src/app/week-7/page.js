@@ -16,13 +16,19 @@ export default function Page() {
   };
 
 
-  return <main>
+  return <div>
+    <main>
     <h1 className='text-shadows'>Shopping List</h1>
     <NewItem onAddItem={handleAddItem} />
     <ItemList items={items} />
     
-  </main>
+    </main>
+      <footer>
+        <p className='p-4 mx-auto mt-10 text-center'>&copy; 2025 Levi Moreau</p>
+      </footer>
+  </div>
 };
+
 
 
 
