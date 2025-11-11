@@ -3,7 +3,7 @@
 import { useUserAuth } from "../contexts/AuthContext.js";
 import Link from "next/link";
 import Image from 'next/image';
-import myImg from '../assets/bonk-maxxnew.gif';
+import myImg from '../assets/opm_1.gif';
 
 export default function Page({  }) {
 
@@ -60,6 +60,12 @@ export default function Page({  }) {
 /********   TO-DO    *********
  * 
  * Add Event listener alert for confirmation of log out
+ * 
+ * SHOW FULLSCREEN ONE PUNCH MAN PUNCH ON SIGN OUT
+ * 
+ * CHANGE COLOUR ON BACKGROUND OF LOG IN CARD TO RED BUT KEEP THE BLUE FOR INITIAL SIGN IN
+ * 
+ * 
  * 
  * figure out how to import hdr into web port
  * 
