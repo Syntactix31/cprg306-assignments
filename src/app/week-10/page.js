@@ -39,7 +39,7 @@ export default function Page({  }) {
             </button>
 
           
-            <Link href="/week-9/shopping-list" className="h-fit bg-red-500 text-white p-6 text-center font-bold rounded-full my-auto mr-4 hover:scale-110 hover: :font-extrabold active:scale-100 hover:bg-red-500 hover:underline">Go to Shopping List &#10140;</Link>
+            <Link href="/week-10/shopping-list" className="h-fit bg-red-500 text-white p-6 text-center font-bold rounded-full my-auto mr-4 hover:scale-110 hover: :font-extrabold active:scale-100 hover:bg-red-500 hover:underline">Go to Shopping List &#10140;</Link>
           </div>
         </div>
         )

@@ -43,6 +43,10 @@ export default function Page() {
           <Link href="/week-9"className="active:scale-90 mx-auto flex max-w-sm items-center gap-x-4 rounded-xl bg-white p-6 shadow-lg outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10 hover:bg-red-200 min-width-week">Week-9 &#10140;</Link>
         </div>
 
+        <div className="my-20">
+          <Link href="/week-10"className="active:scale-90 mx-auto flex max-w-sm items-center gap-x-4 rounded-xl bg-white p-6 shadow-lg outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10 hover:bg-red-200 min-width-week">Week-10 &#10140;</Link>
+        </div>
+
 
 
         {/* <Image src='/bonk.gif' alt='Dog Bonk Gif' width={100} height={100} className='' />

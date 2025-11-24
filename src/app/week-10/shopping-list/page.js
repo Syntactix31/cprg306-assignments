@@ -2,8 +2,9 @@
 
 import ItemList from './item-list';
 import NewItem from './new-item.js';
-import itemsdata from './item.json';
 import MealIdeas from './meal-ideas';
+
+import { getItems, addItem } from '.../services/shopping-list-service';
 
 // Testing to see if this client-side Authentication works
 import { useUserAuth } from "../../contexts/AuthContext.js";
@@ -11,7 +12,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Page() {
 
@@ -30,10 +31,13 @@ export default function Page() {
 
   }
 
-  const [items, setItems] = useState(itemsdata);
+  const [items, setItems] = useState();
   const [selectedItemName, setSelectedItemName] = useState('');
 
-  const handleAddItem = (newItem) => {
+  const handleAddItem = async (newItem) => {
+    const id = await addItem(user.uid, newItem);
+    // I was doing the reassignment wrong so this fixes the issues I was having
+    newItem.id = id;
     setItems((prevItems) => [...prevItems, newItem]);
   };
 
@@ -45,11 +49,25 @@ export default function Page() {
       setSelectedItemName(formattedName[0].trim());
 
     } else {
+      // Had to search up UTF8 code ranges for emoji characters
       const formattedName = itemName.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '').trim();
       setSelectedItemName(formattedName);
     }
   }
 
+  // Added stuff for NoSQL database to load items from there
+  useEffect(() => {
+    loadItems();
+  }, [user?.uid]);
+
+  async function loadItems() {
+    if (!user?.uid) return;
+    const userItems = await getItems(user.uid);  
+    setItems(userItems);
+    
+  }
+
+  
 
   return (
     <div>
@@ -66,7 +84,6 @@ export default function Page() {
           <MealIdeas ingredient={selectedItemName} />
         </div>
         
-        
       
       </main>
       <footer>
@@ -77,3 +94,12 @@ export default function Page() {
 };
 
 
+
+
+
+/**   TODO Monday  ****
+ * Add ability to delete items from the shopping list
+ * 
+ * 
+ * 
+ */
