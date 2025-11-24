@@ -57,15 +57,15 @@ export default function NewItem({ onAddItem }) {
 
       console.log(item);
 
-    setTimeout(() => {
-      onAddItem(newItem);
-    }, 500);
+
+    onAddItem(newItem);
+
 
     
 
     setName("");
     setQuantity(1);
-    setCategory("Produce");
+    setCategory("");
 
   };
 
