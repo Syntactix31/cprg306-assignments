@@ -100,7 +100,7 @@ export default function Page() {
 
 /**   TODO Monday  ****
  * Add ability to delete items from the shopping list
- * 
+ * Add slightly rounded corners on item list to match layout UI
  * 
  * 
  */
