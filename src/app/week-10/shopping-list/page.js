@@ -4,7 +4,7 @@ import ItemList from './item-list';
 import NewItem from './new-item.js';
 import MealIdeas from './meal-ideas';
 
-import { getItems, addItem } from '.../services/shopping-list-service';
+import { getItems, addItem } from '../_services/shopping-list-service';
 
 // Testing to see if this client-side Authentication works
 import { useUserAuth } from "../../contexts/AuthContext.js";
@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function Page() {
 
@@ -20,6 +20,10 @@ export default function Page() {
   const { user } = useUserAuth();
   const router = useRouter();
 
+  const [items, setItems] = useState('');
+  const [selectedItemName, setSelectedItemName] = useState('');
+
+  // Had a VERY annoying error just because my use hooks were after the return conditional
   useEffect(() => {
     if (user === null) {
       router.replace("/");
@@ -30,9 +34,6 @@ export default function Page() {
     return null;
 
   }
-
-  const [items, setItems] = useState();
-  const [selectedItemName, setSelectedItemName] = useState('');
 
   const handleAddItem = async (newItem) => {
     const id = await addItem(user.uid, newItem);
