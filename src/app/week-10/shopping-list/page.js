@@ -99,6 +99,7 @@ export default function Page() {
 
 
 /**   TODO Monday  ****
+ * FIX FORM SUBMIT TO DEFAULT TO CATEGORY NOT PRODUCE ON FORM RELOAD (DO THIS FOR PREVIOUS WEEKS AS WELL)
  * Add ability to delete items from the shopping list
  * Add slightly rounded corners on item list to match layout UI
  * 
