@@ -5,7 +5,7 @@ import Item from "./item";
 import { useState } from "react";
 
 
-export default function ItemList({ items, onItemSelect }) {
+export default function ItemList({ items, onItemSelect, onItemDelete }) {
   const [sortBy, setSortBy] = useState("name");
 
   const sortedItems = [...items].sort((a, b) => {
@@ -25,7 +25,7 @@ export default function ItemList({ items, onItemSelect }) {
   }, {});
 
   return (
-    <div className="ml-10 px-10 pt-10 pb-5 bg-red-200 min-w-list">
+    <div className="ml-10 px-10 pt-10 pb-5 bg-red-200 min-w-list rounded-lg">
       <div className="flex gap-4 mb-6 lg:pl-4 pl-0">
         <button
           onClick={() => setSortBy("name")}
@@ -61,6 +61,7 @@ export default function ItemList({ items, onItemSelect }) {
               quantity={item.quantity}
               category={item.category}
               onSelect={() => onItemSelect(item)}
+              onDelete={() => onItemDelete(item)}
             />
           ))}
         </ul>
@@ -76,6 +77,7 @@ export default function ItemList({ items, onItemSelect }) {
                         name={item.name}
                         quantity={item.quantity}
                         onSelect={() => onItemSelect(item)}
+                        onDelete={() => onItemDelete(item)}
                       />
                     ))}
                   </ul>

@@ -4,7 +4,7 @@ import ItemList from './item-list';
 import NewItem from './new-item.js';
 import MealIdeas from './meal-ideas';
 
-import { getItems, addItem } from '../_services/shopping-list-service';
+import { getItems, addItem, deleteItem } from '../_services/shopping-list-service';
 
 // Testing to see if this client-side Authentication works
 import { useUserAuth } from "../../contexts/AuthContext.js";
@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 
 
 import { useState } from "react";
+// import { deleteDoc } from 'firebase/firestore';
 
 export default function Page() {
 
@@ -20,7 +21,7 @@ export default function Page() {
   const { user } = useUserAuth();
   const router = useRouter();
 
-  const [items, setItems] = useState('');
+  const [items, setItems] = useState([]);
   const [selectedItemName, setSelectedItemName] = useState('');
 
   // Had a VERY annoying error just because my use hooks were after the return conditional
@@ -30,10 +31,23 @@ export default function Page() {
     }
 
   }, [user, router]);
-  if(!user) {
-    return null;
+  // if(user === undefined || user === null) {
+  //   return null;
+  // }
 
-  }
+
+  const handleDeleteItem = async (removeItem) => {
+    await deleteItem(user.uid, removeItem);
+    setItems((prevItems) => prevItems.filter(item => item.id !== removeItem.id));
+
+    setSelectedItemName((currentSelected) => {
+      if (currentSelected === removeItem.name) {
+        return '';
+      }
+      return currentSelected;
+    })
+
+  };
 
   const handleAddItem = async (newItem) => {
     const id = await addItem(user.uid, newItem);
@@ -50,8 +64,10 @@ export default function Page() {
       setSelectedItemName(formattedName[0].trim());
 
     } else {
-      // Had to search up UTF8 code ranges for emoji characters
-      const formattedName = itemName.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '').trim();
+      // Had to search up UTF8 code ranges for emoji characters the initial range I had was too small
+      //
+      // Original Regex: /([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g
+      const formattedName = itemName.replace(/\p{Extended_Pictographic}/gu, '').trim();
       setSelectedItemName(formattedName);
     }
   }
@@ -64,11 +80,9 @@ export default function Page() {
   async function loadItems() {
     if (!user?.uid) return;
     const userItems = await getItems(user.uid);  
-    setItems(userItems);
+    setItems(userItems || []);
     
   }
-
-  
 
   return (
     <div>
@@ -78,7 +92,7 @@ export default function Page() {
         <div className='flex-1'> {/* *****TODO: convert to flex and gap-10 to align all the page elements side by side for readability***** */}
           
           <NewItem onAddItem={handleAddItem} />
-          <ItemList items={items} onItemSelect={handleItemSelect} />
+          <ItemList items={items} onItemSelect={handleItemSelect} onItemDelete={handleDeleteItem}/>
         </div>
         
         <div className='flex-1'>
@@ -99,9 +113,8 @@ export default function Page() {
 
 
 /**   TODO Monday  ****
- * FIX FORM SUBMIT TO DEFAULT TO CATEGORY NOT PRODUCE ON FORM RELOAD (DO THIS FOR PREVIOUS WEEKS AS WELL)
- * Add ability to delete items from the shopping list
- * Add slightly rounded corners on item list to match layout UI
+ * Fix some emojis not working for added new projects
  * 
+ * Fix left margin on window adjust for smaller viewport size
  * 
  */
