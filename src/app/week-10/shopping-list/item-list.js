@@ -61,7 +61,8 @@ export default function ItemList({ items, onItemSelect, onItemDelete }) {
               quantity={item.quantity}
               category={item.category}
               onSelect={() => onItemSelect(item)}
-              onDelete={() => onItemDelete(item)}
+              onDelete={() => onItemDelete(item.id)}
+              
             />
           ))}
         </ul>
@@ -77,7 +78,8 @@ export default function ItemList({ items, onItemSelect, onItemDelete }) {
                         name={item.name}
                         quantity={item.quantity}
                         onSelect={() => onItemSelect(item)}
-                        onDelete={() => onItemDelete(item)}
+                        onDelete={() => onItemDelete(item.id)}
+                        
                       />
                     ))}
                   </ul>

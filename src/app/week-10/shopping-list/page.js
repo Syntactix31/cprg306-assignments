@@ -11,9 +11,7 @@ import { useUserAuth } from "../../contexts/AuthContext.js";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-
 import { useState } from "react";
-// import { deleteDoc } from 'firebase/firestore';
 
 export default function Page() {
 
@@ -35,19 +33,11 @@ export default function Page() {
   //   return null;
   // }
 
+  // Added stuff for NoSQL database to load items from there
+  useEffect(() => {
+    loadItems();
+  }, [user?.uid]);
 
-  const handleDeleteItem = async (removeItem) => {
-    await deleteItem(user.uid, removeItem);
-    setItems((prevItems) => prevItems.filter(item => item.id !== removeItem.id));
-
-    setSelectedItemName((currentSelected) => {
-      if (currentSelected === removeItem.name) {
-        return '';
-      }
-      return currentSelected;
-    })
-
-  };
 
   const handleAddItem = async (newItem) => {
     const id = await addItem(user.uid, newItem);
@@ -55,6 +45,15 @@ export default function Page() {
     newItem.id = id;
     setItems((prevItems) => [...prevItems, newItem]);
   };
+
+  const handleDeleteItem = async (itemId) => {
+    if (!user?.uid) return;
+    await deleteItem(user.uid, itemId);
+    setItems(prevItems => prevItems.filter(item => item.id !== itemId));
+  };
+
+
+
 
   const handleItemSelect = (item) => {
     const itemName = item.name;
@@ -72,10 +71,7 @@ export default function Page() {
     }
   }
 
-  // Added stuff for NoSQL database to load items from there
-  useEffect(() => {
-    loadItems();
-  }, [user?.uid]);
+
 
   async function loadItems() {
     if (!user?.uid) return;
@@ -92,7 +88,7 @@ export default function Page() {
         <div className='flex-1'> {/* *****TODO: convert to flex and gap-10 to align all the page elements side by side for readability***** */}
           
           <NewItem onAddItem={handleAddItem} />
-          <ItemList items={items} onItemSelect={handleItemSelect} onItemDelete={handleDeleteItem}/>
+          <ItemList items={items} onItemSelect={handleItemSelect} onItemDelete={handleDeleteItem} />
         </div>
         
         <div className='flex-1'>
@@ -113,8 +109,9 @@ export default function Page() {
 
 
 /**   TODO Monday  ****
- * Fix some emojis not working for added new projects
  * 
  * Fix left margin on window adjust for smaller viewport size
  * 
  */
+
+

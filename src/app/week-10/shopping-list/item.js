@@ -23,7 +23,10 @@ export default function Item({name, quantity, category, onSelect, onDelete}) {
         {category}        
       </div>
 
-      <div onClick={(e) => {e.stopPropagation(); onDelete(); }} onMouseEnter={() => setIsDeleteHovered(true)} onMouseLeave={() => setIsDeleteHovered(false)}>
+      <div 
+        onClick={(e) => {e.stopPropagation(); onDelete(); }}
+        onMouseEnter={() => setIsDeleteHovered(true)} 
+        onMouseLeave={() => setIsDeleteHovered(false)}>
         {/* <Image src={TrashImg} alt="Trash Icon" className='w-5 h-5'/> */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
